@@ -1,0 +1,630 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Open+Sans:wght@300;400;500;600;700;800&family=Roboto:wght@100;300;400;500;700;900&family=Silkscreen:wght@700&display=swap');
+
+
+/*Description*/
+/*
+1. Root-settings
+2. body/html-settings
+3. Navbar & Mobile-navbar ---------------------------  Header
+4. Hero-section
+5. Content-section ------------------  Content
+6. Footer ---------------------------  Footer
+*/
+
+/*1. Root-settings*/
+
+* {
+  /*Cut of all standard margin and padding, and with "border-box" make the boxes not "grow" with padding and borders*/
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/*2. body/html-settings*/
+body, html {
+  /*Setting my importent-font and make some color-varibles*/
+  font-family: Montserrat;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  --background-color:#E89609;
+  --navbar-color: #215A93;
+  --Content-backgroundColor: #AEC6DF;
+  --Content-color: #0D1F3A;
+  --white: #fff;
+  --Hero-text: #fff;
+  --good-blue: #215A93;
+  --background-color: rgba(228, 222, 222, 0.5);
+  --content-margin-left-right: 2vh 4vw;
+  background-color: var(--background-color);
+}
+
+/*Validated OK 2022-09-11 13:06*/
+
+/*3. Navbar & Mobile-navbar*/
+
+.navbar {
+  display: flex;
+  /*
+  align-items: center;
+  justify-content: space-between;
+  */
+  background-color: var(--navbar-color);
+  height: 10vh;
+}
+
+
+.navbar > h1{
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-top: 1vh;
+  padding: 2vh;
+  color: var(--white);
+}
+
+.navbar-list {
+  display: none;
+}
+
+/*Making a navbar to mobile, with a grid and 3 items.*/
+@media screen and (max-width: 980px)
+{
+  .nav-icon
+  {
+    position: absolute;
+    background-color: var(--navbar-color);
+    top: 20px;
+    right: 30px;
+    width: 50px;
+    height: 30px;
+    display: grid;
+    grid-template-columns: 1fr;
+    /*Some extra rows so that we got that space between*/
+    grid-template-rows: .7fr .2fr .7fr .2fr .7fr;
+    cursor: pointer;
+  }
+}
+
+.menu1 {
+  background-color: var(--white);
+  grid-row: 1;
+  grid-column: 1 / -1;
+}
+.menu2 {
+  background-color: var(--white);
+  grid-row: 3;
+  grid-column: 1 / -1;
+}
+.menu3 {
+  background-color: var(--white);
+  grid-row: 5;
+  grid-column: 1 / -1;
+}
+
+/*Making the nav-link flex so i can place each link in a column*/
+.nav-links {
+  display: none;
+  flex-direction: column;
+  background-color: blue;
+}
+
+.nav-links a {
+  color: white;
+  border-bottom: 1px solid white;
+  text-decoration: none;
+  text-align: center;
+}
+
+/*Validated OK 2022-09-11 16:12*/
+
+/*3. Navbar PC-screen*/
+@media screen and (min-width: 980px)
+{
+  /*3. Navbar*/
+  .navbar {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    background-color: var(--navbar-color);
+    height: 10vh;
+  }
+
+  .navbar > h1{
+    font-size: 1.6rem;
+    font-weight: 700;
+    justify-content: center;
+    padding: 2vh;
+    color: #FFFFFF;
+  }
+
+  /*Navbar PC screen*/
+  .navbar-list {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+
+  }
+  .navbar-list li {
+    list-style: none;
+    margin-right: 5vw;
+  }
+  .navbar-list li a{
+    font-size: 1.4rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: var(--Hero-text);
+    position: relative;
+  }
+
+  .navbar-list li a:hover {
+    opacity: .5;
+  }
+
+  .navbar-list li a::after
+  {
+    display: flex;
+    content: "";
+    width: 100%;
+    height: 3px;
+    transform: scale(0);
+    transition: 0.2s ease-in-out;
+    background-color: var(--Content-backgroundColor);
+    position: absolute;
+  }
+
+  .navbar-list li a:hover::after {
+    transform: scale(1);
+  }
+
+
+
+
+/*
+  .navbar-list li:hover {
+    text-decoration: underline;
+  }
+  */
+  /*Validated OK 2022-09-12 16:00*/
+}
+
+/*4. Hero-section*/
+
+/*I couldn't use background-image in this case so i tried to overlap the image with gradient
+using ::after with content attribut set to empty. after that i have a full width and height
+and position it absolute relative to the background image. Then i thought i could use background-color
+but you have to use background-image and then what gradient you want to have*/
+
+
+.Hero-image {
+  position: relative;
+  display: flex;
+}
+
+.Hero-image::after {
+  content: "";
+  background-image: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 1));
+  opacity: 0.5;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/*Here i will place the text into the image with position relative and absolute*/
+.Hero-text-container {
+  /*Positioning each item of the container*/
+  height: 40vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+
+  /*Styling the text*/
+  font-size: 1.4rem;
+  padding: 0 1rem;
+  font-weight: 800;
+
+
+  /*Positioning of the text*/
+  position: absolute;
+  top: 30vh;
+  color: var(--Hero-text);
+}
+/*Validated OK 2022-09-12 15:32*/
+
+/*4. Hero-section, PC-screen*/
+@media screen and (min-width: 980px) {
+
+  /*Here i will place the text into the image with position relative and absolute*/
+  .Hero-text-container {
+    /*Positioning each item of the container*/
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+
+    /*Styling the text*/
+    font-size: 2.5rem;
+
+    padding:0 1.5rem;
+    font-weight: 900;
+
+
+    /*Positioning of the text*/
+    position: absolute;
+    top: 25vh;
+    color: var(--Hero-text);
+  }
+}
+
+/*Validated OK 2022-09-13 10:52*/
+
+/*5. Content-section*/
+
+.grid-content-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  height: 80vh;
+  margin: 2vh 4vw;
+}
+
+/*Style all the text in the wrapper*/
+.content-text-wrapper {
+  margin-bottom: 20px;
+  font-size: 1.3rem;
+  font-weight: 500;
+  padding-left: 4vw;
+  padding-right: 2vw;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  color: var(--Content-color);
+  text-align: center;
+  border: 4px outset var(--navbar-color);
+}
+
+.content-text-wrapper h3 {
+  margin-bottom: 2vh;
+}
+
+.grid-content-item-2 {
+  display: flex;
+  align-items: center;
+  grid-row: 1;
+  grid-column: 1 / -1;
+}
+
+.grid-content-item-3 {
+  /*background-image: url(img/Content-image2.jpg);*/
+  background-image: linear-gradient(rgba(77, 110, 194, 0.1), rgba(101, 89, 214, 0.1)), url(img/oceanView.jpg);
+  background-size: cover;
+  background-position: center;
+  /*border: 4px outset var(--navbar-color);*/
+  /*border: 1px solid var(--navbar-color);*/
+
+  /*border: 2px outset rgb(39, 166, 250);*/
+  grid-row: 2;
+  grid-column: 1 / -1
+}
+
+
+.grid-content-item-4 {
+  grid-row: 2;
+  grid-column: 1 / -1;
+}
+
+/*Validated OK 2022-09-13 16:03*/
+
+.content-middle-container {
+  height: 90vh;
+  width: 100%;
+}
+
+
+#content-header {
+  background-color: var(--navbar-color);
+  border: 1px solid var(--Content-color);
+  border-radius: 10px;
+  margin-top: 6vh;
+  padding: 6vh 6vw;
+  font-size: 1.7rem;
+  font-weight: 600;
+  text-align: center;
+  color: var(--white);
+}
+
+.grid-content-middle {
+  margin-top: 7vh;
+  display: grid;
+  grid-template-rows: 0.7fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+  border-radius: 9px;
+  padding-right: 30px;
+  background-image: linear-gradient(rgba(228, 222, 222, .7), rgba(228, 222, 222, .7)), url(img/building-image.jpg);
+  background-size: cover;
+ }
+
+ .grid-item-position-1 {
+  display: flex;
+  grid-row: 1;
+  grid-column: 1 / 2;
+  align-items: center;
+  justify-content: center;
+ }
+
+ .grid-item-position-2 {
+  display: flex;
+  grid-row: 2;
+  grid-column: 1 / 2;
+  align-items: center;
+  justify-content: center;
+ }
+
+ .grid-item-position-3 {
+  display: flex;
+  grid-row: 3;
+  grid-column: 1 / 2;
+  align-items: center;
+  justify-content: center;
+ }
+
+.grid-item-1 {
+  grid-column: 1 / 2;
+  grid-row: 1;
+}
+
+.grid-item-2 {
+  grid-column: 1 / 2;
+  grid-row: 2;
+}
+.grid-item-3 {
+  grid-column: 1 / 2;
+  grid-row: 3;
+}
+
+.circle-description-1 {
+  grid-column: 2 / 3;
+  grid-row: 1;
+}
+
+.circle-description-2 {
+  grid-column: 2 / 3;
+  grid-row: 2;
+}
+
+.circle-description-3 {
+  grid-column: 2 / 3;
+  grid-row: 3;
+}
+
+.description-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
+#content-last-text {
+  padding-bottom: 20px;
+}
+
+.content-middle-innerContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 100%;
+  height: 70vh;
+
+}
+
+.circle {
+  width: 110px;
+  height: 110px;
+  border: 1px solid var(--Content-color);
+  border-radius: 50%;
+  margin: 2vh 4vw;
+}
+
+.circle-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  color: var(--Content-color);
+}
+
+/*Validated OK 2022-09-13 17:58*/
+
+/*5. Content - Computer Screen*/
+@media screen and (min-width: 980px) {
+  .grid-content-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    height: 150vh;
+  }
+
+  .grid-content-item-3 {
+    height: 80vh;
+  }
+
+  .grid-content-item-2 {
+    justify-content: center;
+  }
+
+  .grid-content-item-4 {
+    margin-bottom: 89vh;
+  }
+
+  .content-text-wrapper {
+    padding: 5vh 5vw;
+    font-size: 2rem;
+  }
+
+  #content-header{
+    font-size: 3rem;
+    border-radius: 1px;
+    font-weight: 600;
+  }
+
+  .grid-content-middle {
+    margin-top: 7vh;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    background-image: linear-gradient(rgba(228, 222, 222, .7), rgba(228, 222, 222, .7)), url(img/building-image.jpg);
+    background-size: cover;
+
+  }
+
+  .circle {
+    width: 160px;
+    height: 160px;
+    border: 1px solid var(--Content-color);
+    border-radius: 50%;
+    margin: 2vh 4vw;
+  }
+
+  .circle-text h2 {
+    font-size: 1.8rem;
+  }
+
+  .description-text {
+    font-size: 1.35rem;
+    font-weight: 500;
+    padding: 2vh 2vw;
+    border-radius: 8px;
+    text-align: center;
+  }
+
+  .image-wrapper {
+    display: flex;
+    height: auto;
+    width: auto;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .grid-image-1 {
+    grid-row: 1;
+    grid-column: 1 / 2;
+    height: 10vh;
+    width: 10vw;
+    border: 3px outset var(--good-blue);
+    padding: 13vh 13vw;
+    background-image: url(img/content-image-1.png);
+    background-size: cover;
+    background-position: center center;
+  }
+
+
+  .circle-description-1 {
+    grid-row: 1;
+    grid-column: 3 / 4;
+  }
+
+  .grid-item-position-1 {
+    width: 25vw;
+    justify-content: flex-end;
+    display: flex;
+    height: 40vh;
+    grid-row: 1;
+    grid-column: 2 / 3;
+    align-items: center;
+  }
+
+  .grid-image-2 {
+    grid-row: 2;
+    grid-column: 1 / 2;
+    height: 20vh;
+    width: 20vw;
+    border: 3px outset var(--good-blue);
+    padding: 13vh 13vw;
+    background-image: url(img/content-image-2.png);
+    background-size: cover;
+    background-position: center center;
+  }
+
+  .circle-description-2 {
+    grid-row: 2;
+    grid-column: 3 / -1;
+  }
+
+  .grid-item-position-2 {
+    display: flex;
+    grid-row: 2;
+    grid-column: 2 / 3;
+    height: 40vh;
+    align-items: center;
+    width: 25vw;
+    justify-content: flex-end;
+
+  }
+
+  .grid-image-3 {
+    grid-row: 3;
+    grid-column: 1 / 2;
+    height: 20vh;
+    width: 20vw;
+    border: 3px outset var(--good-blue);
+    padding: 13vh 13vw;
+    background-image: url(img/2tower&buildingFinal.jpg);
+    background-size: cover;
+    background-position: center center;
+  }
+
+  .circle-description-3 {
+    display: flex;
+    grid-row: 3;
+    grid-column: 3 / 4;
+    height: 40vh;
+    align-items: center;
+  }
+
+  .grid-item-position-3 {
+    display: flex;
+    grid-row: 3;
+    grid-column: 2 / 3;
+    height: 40vh;
+    align-items: center;
+    width: 25vw;
+    justify-content: flex-end;
+  }
+
+  /*6. Footer*/
+  #footer-text p {
+    font-size: 1.6rem;
+
+  }
+
+  /*Validated OK 2022-09-14 15:44*/
+
+}
+
+/*6. Footer */
+#footer-container {
+  height: 10vh;
+  width: 100%;
+  margin-top: 7vh;
+  background-color: var(--good-blue);
+}
+
+#footer-text {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  color: var(--white);
+}
+
+/*Validated OK 2022-09-14*/
+
+/*Validated OK 2022-09-14 20:18*/
+
+/*Validated OK FINAL 2022-09-15*/
